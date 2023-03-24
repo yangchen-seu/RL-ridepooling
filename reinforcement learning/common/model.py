@@ -1,8 +1,8 @@
 '''
 Author: your name
 Date: 2021-12-05 16:23:47
-LastEditTime: 2021-12-27 22:28:41
-LastEditors: Please set LastEditors
+LastEditTime: 2022-07-05 08:15:25
+LastEditors: error: git config user.name && git config user.email & please set dead value or install git
 Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 FilePath: \强化学习教程\common\model.py
 '''
@@ -53,17 +53,17 @@ class DQN(nn.Module):
 
 
 class critic(nn.Module):
-    def __init__(self, n_obs, hidden_size, init_w = 3e-3) -> None:
+    def __init__(self, n_obs, hidden_dim, init_w = 3e-3) -> None:
         super().__init__()
-        self.l1 = nn.Linear(n_obs, hidden_size)
-        self.l2 = nn.Linear(hidden_size, hidden_size)
-        self.l3 = nn.Linear(hidden_size, 1)
+        self.l1 = nn.Linear(n_obs, hidden_dim)
+        self.l2 = nn.Linear(hidden_dim, hidden_dim)
+        self.l3 = nn.Linear(hidden_dim, 1)
         # 随机初始化为较小的值
         self.l3.weight.data.uniform_(-init_w, init_w)
         self.l3.bias.data.uniform_(-init_w, init_w)
 
     
-    def forward(self, state):
+    def forward(self, x):
         x = F.relu(self.l1(x))
         x = F.relu(self.l2(x))
         x = self.l3(x)
